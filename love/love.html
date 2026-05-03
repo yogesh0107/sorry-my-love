@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>💕 Maafi De Do Na Meri Jaan ~ Romantic Apology</title>
+    <!-- Google Fonts  (cursive + clean)-->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(145deg, #fff0f5 0%, #ffe4ed 100%);
+            font-family: 'Quicksand', sans-serif;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            color: #5e2a3e;
+        }
+
+        /* ========== MULTI-PAGE (SECTION BASED) with SMOOTH SCROLL ========== */
+        .page {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem 4rem;
+            position: relative;
+            transition: all 0.3s ease;
+            scroll-margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Floating hearts background (romantic) */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            overflow: hidden;
+        }
+        .heart-particle {
+            position: absolute;
+            bottom: -40px;
+            font-size: 1.5rem;
+            opacity: 0.5;
+            animation: floatUp linear infinite;
+            user-select: none;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.6; }
+            100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+        }
+
+        /* NAVIGATION DOTS (Sidebar style) */
+        .nav-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+        .dot {
+            width: 12px;
+            height: 12px;
+            background-color: #f7b2c2;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid #ff8aa8;
+            box-shadow: 0 0 5px #ffc0d0;
+        }
+        .dot.active {
+            background-color: #e8436e;
+            transform: scale(1.5);
+            border-color: white;
+        }
+        .dot:hover {
+            background-color: #ff6c91;
+            transform: scale(1.2);
+        }
+
+        /* typography */
+        .romantic-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: clamp(2.6rem, 8vw, 5rem);
+            color: #c43b6b;
+            text-shadow: 2px 2px 20px #ffb7ce;
+            margin-bottom: 0.5rem;
+        }
+        .sub-text {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: #af5175;
+            background: rgba(255,240,245,0.7);
+            padding: 0.5rem 2rem;
+            border-radius: 60px;
+            display: inline-block;
+            backdrop-filter: blur(4px);
+        }
+
+        /* buttons */
+        .pill-button {
+            background: linear-gradient(135deg, #ff85a8, #ff5c83);
+            border: none;
+            color: white;
+            font-weight: bold;
+            padding: 12px 32px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-family: 'Dancing Script', cursive;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 20px rgba(228,67,110,0.4);
+            margin-top: 1.5rem;
+        }
+        .pill-button:hover {
+            transform: translateY(-3px);
+            background: linear-gradient(135deg, #ff6b92, #ff416c);
+            box-shadow: 0 14px 28px rgba(228,67,110,0.6);
+        }
+
+        /* Gallery frame style (like beautiful polaroid frames) */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 2rem 0;
+        }
+        .polaroid {
+            background: white;
+            border-radius: 20px;
+            padding: 12px 12px 20px 12px;
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            text-align: center;
+            transform: rotate(0deg);
+        }
+        .polaroid:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 30px 40px rgba(236,72,153,0.25);
+        }
+        .polaroid img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            border-radius: 16px;
+            border: 2px solid #fbc4d2;
+        }
+        .polaroid-caption {
+            margin-top: 12px;
+            font-family: 'Dancing Script', cursive;
+            color: #c9486e;
+            font-size: 1.2rem;
+        }
+
+        /* Video section with autoplay */
+        .video-box {
+            background: #ffeef4;
+            border-radius: 48px;
+            padding: 15px;
+            box-shadow: 0 25px 45px rgba(199, 79, 109, 0.3);
+            border: 2px solid #ffbfd0;
+            width: 100%;
+            max-width: 880px;
+            margin: 1.5rem auto;
+        }
+        .video-box video {
+            width: 100%;
+            border-radius: 40px;
+            display: block;
+            outline: none;
+        }
+
+        /* Memes card style (funny frames) */
+        .memes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 1.8rem;
+            margin: 2rem 0;
+        }
+        .meme-card {
+            background: white;
+            border-radius: 32px;
+            padding: 1.2rem;
+            text-align: center;
+            border: 2px solid #ffb0c2;
+            transition: 0.25s;
+            box-shadow: 0 12px 20px rgba(190, 60, 100, 0.1);
+        }
+        .meme-card:hover {
+            transform: scale(1.02);
+            background: #fffafc;
+            border-color: #f47b9e;
+        }
+        .meme-emoji {
+            font-size: 3rem;
+            display: block;
+        }
+        .meme-text {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: #a13e61;
+            margin-top: 10px;
+        }
+
+        /* Reasons list */
+        .reasons-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .reason-item {
+            background: rgba(255, 220, 235, 0.8);
+            backdrop-filter: blur(4px);
+            border-radius: 50px;
+            padding: 10px 22px;
+            font-size: 1rem;
+            font-weight: bold;
+            color: #b43b61;
+            border: 1px solid #ff99b5;
+        }
+
+        /* Forgive button big */
+        .forgive-section {
+            background: #ffeef4;
+            border-radius: 60px;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .page { padding: 2rem 1rem; }
+            .nav-dots { right: 10px; gap: 12px; }
+        }
+
+        /* Love letter frame */
+        .love-letter {
+            background: #fff5f9;
+            border-radius: 38px;
+            padding: 2rem;
+            box-shadow: inset 0 0 0 2px white, 0 20px 35px rgba(0,0,0,0.05);
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.3rem;
+            text-align: center;
+            border: 2px solid #ffbed2;
+        }
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="backgroundMusic" src="./Thoda_Thoda_Pyaar___Sidharth_Malhotra,Neha_Sharma_Stebin_Ben,Nilesh_Ahuja,Kumaar_Zee_Music_Originals(256k).mp3.mpeg" loop preload="auto"></audio>
+<div id="musicControls" style="position: fixed; bottom: 20px; left: 20px; z-index: 101; display: none;">
+    <button id="musicToggleBtn" class="pill-button" style="font-size: 0.95rem; padding: 10px 18px; border-radius: 40px;">🎵 Play Music</button>
+</div>
+
+<div class="floating-hearts" id="heartContainer"></div>
+
+<!-- Sidebar Dots for Multi-Page navigation -->
+<div class="nav-dots" id="navDots">
+    <div class="dot active" data-page="0"></div>
+    <div class="dot" data-page="1"></div>
+    <div class="dot" data-page="2"></div>
+    <div class="dot" data-page="3"></div>
+    <div class="dot" data-page="4"></div>
+    <div class="dot" data-page="5"></div>
+    <div class="dot" data-page="6"></div>
+</div>
+
+<!-- ===================== PAGE 0 : HERO APOLOGY ==================== -->
+<section class="page" id="page0">
+    <div class="container" style="text-align: center;">
+        <i class="fas fa-heart" style="font-size: 5rem; color: #ff6685; animation: pulse 1.5s infinite;"></i>
+        <h1 class="romantic-title">Meri Jaan, Maafi De Do Na ❤️</h1>
+        <p class="sub-text">"Tumse door rehna, mujhse ho nahi sakta..."</p>
+        <p style="max-width: 500px; margin: 1.5rem auto; font-size: 1.1rem; background: #fff0f5d0; border-radius: 30px; padding: 0.8rem;">Maine bhool ki hai, magar dil sirf tumhara hai. Please maang raha hoon, maafi dekar mera chehra phir se roshan kar do 💖</p>
+        <button class="pill-button" onclick="goToPage(1)"><i class="fas fa-arrow-right"></i> Hamari Yaadein Dekho</button>
+        <div style="margin-top: 2rem;">
+            <i class="fas fa-camera"></i> <i class="fas fa-music"></i> <i class="fas fa-video"></i>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PAGE 1 : GALLERY (All your images with frames) ==================== -->
+<section class="page" id="page1">
+    <div class="container">
+        <h2 class="romantic-title" style="font-size: 3rem;">📸 Hamari Pyaari Tasveerein</h2>
+        <p class="sub-text">Har frame mein tum ho | Har pal tumhara </p>
+        <div class="gallery-grid" id="dynamicGallery"></div>
+        <div style="text-align: center; margin-top: 20px;">
+            <button class="pill-button" onclick="goToPage(2)"><i class="fas fa-play"></i>  Hamara Special Video ✨</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PAGE 2 : VIDEO (AUTOPLAY) ==================== -->
+<section class="page" id="page2">
+    <div class="container">
+        <h2 class="romantic-title">🎬 Humara Sabse Khoobsurat Waqt</h2>
+        <p class="sub-text">Dekho yeh video — Tumhare bina main adhoora hoon 🥺</p>
+        <div class="video-box">
+            <video id="romanticVideo" controls preload="auto" playsinline>
+                <source src="https://www.image2url.com/r2/default/videos/1777828397195-5495aa1a-c9ec-4faf-bcb6-e14c07aa9888.mp4" type="video/mp4">
+                Your browser doesn't support video.
+            </video>
+        </div>
+        <div class="love-letter" style="margin-top: 25px;">
+            <i class="fas fa-quote-left"></i> Yeh video humari best time ki nishani hai. Jab dekhta hoon toh lagta hai jannat mil gayi. Tumse pyaar hai, infinite.
+        </div>
+        <button class="pill-button" onclick="goToPage(3)" style="margin-top: 30px;">🎵 Romantic Songs Aur Baatein →</button>
+    </div>
+</section>
+
+<!-- ===================== PAGE 3 : MEMES + FUNNY APOLOGY FRAMES ==================== -->
+<section class="page" id="page3">
+    <div class="container">
+        <h2 class="romantic-title">😂 Tere Bina Life Meme Ban Gayi Hai</h2>
+        <p class="sub-text">Thoda humor, thoda pyaar — maafi ke kuch nuskhe</p>
+        <div class="memes-grid" id="memesGrid"></div>
+        <div class="forgive-section">
+            <i class="fas fa-heart-broken" style="font-size: 2rem;"></i>
+            <p style="font-weight: bold; margin-top: 8px;">"Mana na hai, lekin phir bhi maan ja... main tere bina bikhar jaunga"</p>
+            <button class="pill-button" onclick="goToPage(4)">💔 Wajah maangne chalo? 💔</button>
+        </div>
+    </div>
+</section>
+
+<!-- ===================== PAGE 4 : REASONS WHY I LOVE YOU & SORRY ==================== -->
+<section class="page" id="page4">
+    <div class="container">
+        <h2 class="romantic-title">💕 Tujhe Kyun Maafi Chahiye? 💕</h2>
+        <p class="sub-text">Meri jaan, tu meri zindagi hai</p>
+        <div class="reasons-list" id="reasonsList"></div>
+        <div style="background: #ffe2ec; border-radius: 50px; padding: 1.5rem; margin-top: 2rem; text-align: center;">
+            <i class="fas fa-envelope-open-text" style="font-size: 2rem; color:#d44c6e;"></i>
+            <p style="font-family: 'Dancing Script', cursive; font-size: 1.4rem;">Main hamesha tumhara hoon, bas ek maafi de do aur waapas aao. I promise tumhe kabhi hurt nahi karunga. 🤍</p>
+        </div>
+        <button class="pill-button" onclick="goToPage(5)">🌹 Maafi Mangu? Chalo Final Chapter 🌹</button>
+    </div>
+</section>
+
+<!-- ===================== PAGE 5 : FINAL APOLOGY + FORGIVE BUTTON ==================== -->
+<section class="page" id="page5">
+    <div class="container" style="text-align: center;">
+        <i class="fas fa-heart" style="font-size: 70px; color: #f45b8b;"></i>
+        <h2 class="romantic-title" style="color:#bc3762;">Meri Jaan, Please Maafi De De 💖</h2>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 1rem auto;">Tumhari chaahat sabse badi daulat hai. Ek baar “maaf kiya” bol do, saari khushiyan wapas aa jayengi 🌈</p>
+        <button class="pill-button" id="finalForgiveBtn" style="font-size: 1.8rem; padding: 12px 40px;"><i class="fas fa-check-circle"></i> Maan Gayi? Maaf Kardo ❤️</button>
+        <div id="forgiveMessage" style="margin-top: 30px; font-size: 1.3rem; font-family: 'Dancing Script', cursive;"></div>
+        <button class="pill-button" onclick="goToPage(6)" style="background: #c47292; margin-top: 25px;">🌟 Romantic Surprise →</button>
+    </div>
+</section>
+
+<!-- ===================== PAGE 6 : SURPRISE LOVE LETTER & HAPPY VIBES ==================== -->
+<section class="page" id="page6">
+    <div class="container" style="text-align: center;">
+        <i class="fas fa-star" style="font-size: 3rem; color: gold;"></i>
+        <h2 class="romantic-title">Tu Meri Maaafi, Tu Mera Pyaar</h2>
+        <div class="love-letter" style="max-width: 700px; margin: 20px auto;">
+            ❝ Tumne maaf kiya toh jaise chaand mil gaya. Har galti bhulake, naye sapne bunenge, saath rahenge hamesha. Tum hi meri roshni ho.<br>
+            💌 “I love you more than all the stars in the sky.” ❞
+        </div>
+        <div style="margin: 2rem 0;">
+            <i class="fas fa-cake-candles"></i> <i class="fas fa-music"></i> <i class="fas fa-dove"></i>
+        </div>
+        <button class="pill-button" onclick="goToPage(0)"><i class="fas fa-home"></i> Wapas Home</button>
+        <footer style="margin-top: 50px;">Made with teary eyes & lots of love for my jaan ✨</footer>
+    </div>
+</section>
+
+<script>
+    // All image links exactly as provided 
+    const allImages = [
+        "https://i.postimg.cc/7YMq84GJ/10.jpg",
+        "https://i.postimg.cc/8PVT0c5S/4.jpg",
+        "https://i.postimg.cc/4NTXSydK/5.jpg",
+        "https://i.postimg.cc/MK8zFHTf/6.jpg",
+        "https://i.postimg.cc/bNjqBrJt/7.jpg",
+        "https://i.postimg.cc/jdrRF25N/8.jpg",
+        "https://i.postimg.cc/J4WR20nc/9.jpg",
+        "https://i.postimg.cc/GhJbwR8D/Whats-App-Image-2026-05-03-at-9-53-55-PM.jpg",
+        "https://i.postimg.cc/X7cnSWGC/Whats-App-Image-2026-05-03-at-9-53-56.jpg",
+        "https://i.postimg.cc/vHLGFyg5/Whats-App-Image-2026-05-03-at-9-53-56-PM.jpg"
+    ];
+    
+    // Meme data (funny/witty romantic)
+    const memesData = [
+        { emoji: "😭", text: "Jab tu naraz hoti hai toh mera status: 'Online, but crying inside' 💔" },
+        { emoji: "🤡", text: "Maine socha tha 'Main cool hoon' but tu bina main pagal ho gaya ❤️" },
+        { emoji: "🌚", text: "Tere 'Mana na' ke baad maine full website bana di, ab bas maafi de de 🥺" },
+        { emoji: "💘", text: "Tum ek baar smile kardo, main 7 pages ka romance ready rakhunga 😂" },
+        { emoji: "🌸", text: "Main bina tere: 'Kya kar rahe ho?' ... tere liye hi jee raha hoon." },
+        { emoji: "🎀", text: "Best Relationship Meme: Tu angry, Main guilty ... phir bhi pyaar best ♥️" }
+    ];
+    
+    // Reasons to forgive
+    const reasons = [
+        "💖 Tumhari muskaan meri duniya hai", 
+        "💕 Tumhare bina raat adhoori hai", 
+        "💗 Tum mera sabse khoobsurat khwab ho", 
+        "💞 Main tumse bohot pyaar karta hoon", 
+        "🌸 Har baat mein tum hi tum ho", 
+        "🌷 Main hamesha tumhara hu, kabhi nahi chodunga"
+    ];
+    
+    // Build Gallery
+    const galleryContainer = document.querySelector('#dynamicGallery');
+    if(galleryContainer) {
+        allImages.forEach((imgUrl, idx) => {
+            const polaroid = document.createElement('div');
+            polaroid.className = 'polaroid';
+            polaroid.innerHTML = `
+                <img src="${imgUrl}" alt="memory ${idx}" loading="lazy">
+                <div class="polaroid-caption"><i class="fas fa-heart" style="color:#f05a80;"></i> Meri Jaan #${idx+1}</div>
+            `;
+            galleryContainer.appendChild(polaroid);
+        });
+    }
+    
+    // Build Memes grid
+    const memesContainer = document.querySelector('#memesGrid');
+    if(memesContainer) {
+        memesData.forEach(meme => {
+            const card = document.createElement('div');
+            card.className = 'meme-card';
+            card.innerHTML = `<span class="meme-emoji">${meme.emoji}</span><div class="meme-text">${meme.text}</div>`;
+            memesContainer.appendChild(card);
+        });
+    }
+    
+    // Reasons List
+    const reasonsContainer = document.querySelector('#reasonsList');
+    if(reasonsContainer) {
+        reasons.forEach(text => {
+            const span = document.createElement('div');
+            span.className = 'reason-item';
+            span.innerText = text;
+            reasonsContainer.appendChild(span);
+        });
+    }
+    
+    // ----------------- MULTI-PAGE SCROLL LOGIC (smooth) -----------------
+    const pages = document.querySelectorAll('.page');
+    const dots = document.querySelectorAll('.dot');
+    
+    function updateDotsAndPages() {
+        let currentPageIndex = 0;
+        const scrollPosition = window.scrollY;
+        for(let i = 0; i < pages.length; i++) {
+            const page = pages[i];
+            const offsetTop = page.offsetTop;
+            const height = page.offsetHeight;
+            if(scrollPosition >= offsetTop - 150 && scrollPosition < offsetTop + height - 100) {
+                currentPageIndex = i;
+                break;
+            }
+        }
+        dots.forEach((dot, idx) => {
+            if(idx === currentPageIndex) dot.classList.add('active');
+            else dot.classList.remove('active');
+        });
+    }
+    
+    function goToPage(index) {
+        if(index >= 0 && index < pages.length) {
+            pages[index].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            // special: if video page, autoplay video 
+            setTimeout(() => {
+                if(index === 2) {
+                    const videoElem = document.getElementById('romanticVideo');
+                    if(videoElem) {
+                        videoElem.play().catch(e => console.log("Autoplay prevented but user can click play", e));
+                    }
+                }
+            }, 500);
+        }
+    }
+    
+    window.addEventListener('scroll', updateDotsAndPages);
+    dots.forEach((dot, idx) => {
+        dot.addEventListener('click', () => goToPage(idx));
+    });
+    updateDotsAndPages();
+    
+    // FORGIVE BUTTON on page 5 - show massive love explosion
+    const forgiveBtn = document.getElementById('finalForgiveBtn');
+    if(forgiveBtn) {
+        forgiveBtn.addEventListener('click', () => {
+            const msgDiv = document.getElementById('forgiveMessage');
+            msgDiv.innerHTML = '<span style="background:#ffccdd; padding:10px 24px; border-radius:80px; display:inline-block;">💕 Tumne maaf kar diya! I promise hamesha khush rakhunga 💕<br> 🌸 Love you jaan ❤️</span>';
+            // create floating hearts burst
+            for(let i=0; i<60; i++) {
+                createExplosionHeart();
+            }
+            // also navigate to final surprise after a moment
+            setTimeout(() => {
+                goToPage(6);
+            }, 1500);
+        });
+    }
+    
+    // Floating hearts continuous (background)
+    function createFloatingHeart() {
+        const heartContainer = document.getElementById('heartContainer');
+        const heart = document.createElement('div');
+        heart.classList.add('heart-particle');
+        const heartIcons = ['❤️','💖','💗','💓','🌸','🌺','💕','✨'];
+        heart.innerHTML = heartIcons[Math.floor(Math.random() * heartIcons.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
+        heart.style.opacity = Math.random() * 0.5 + 0.3;
+        heartContainer.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+    }
+    function createExplosionHeart() {
+        for(let i=0;i<20;i++) {
+            const heart = document.createElement('div');
+            heart.classList.add('heart-particle');
+            heart.innerHTML = ['❤️','💖','💗','🌸','🌺','💕'][Math.floor(Math.random()*6)];
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.top = Math.random() * window.innerHeight + 'px';
+            heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            heart.style.zIndex = 9999;
+            heart.style.animation = 'floatUp 1.5s ease-out forwards';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 1500);
+        }
+    }
+    
+    setInterval(() => {
+        createFloatingHeart();
+    }, 800);
+    
+    // Also video autoplay once the page 2 becomes visible (ensures when clicking dot or manual)
+    const videoObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if(entry.isIntersecting) {
+                const vid = document.getElementById('romanticVideo');
+                if(vid && vid.paused) {
+                    vid.play().catch(e => console.log("waiting for interaction"));
+                }
+            }
+        });
+    }, { threshold: 0.5 });
+    const videoPage = document.getElementById('page2');
+    if(videoPage) videoObserver.observe(videoPage);
+    
+    // Bonus: Autoplay video on page 2 when navigated by goToPage
+    const originalGoTo = goToPage;
+    window.goToPage = function(index) {
+        originalGoTo(index);
+        if(index === 2) {
+            setTimeout(() => {
+                const videoElem = document.getElementById('romanticVideo');
+                if(videoElem) videoElem.play().catch(e=>{});
+            }, 400);
+        }
+    };
+    goToPage = window.goToPage;
+    
+    // Add manual style to make video poster romantic
+    const videoEl = document.getElementById('romanticVideo');
+    if(videoEl) {
+        videoEl.setAttribute('poster', 'https://i.postimg.cc/7YMq84GJ/10.jpg');
+    }
+
+    // Background music from local audio file
+    const bgAudio = document.getElementById('backgroundMusic');
+    const musicControls = document.getElementById('musicControls');
+    const musicToggleBtn = document.getElementById('musicToggleBtn');
+
+    function updateMusicButton() {
+        if (!bgAudio || !musicToggleBtn) return;
+        if (bgAudio.paused) {
+            musicToggleBtn.innerHTML = '🎵 Play Music';
+            musicControls.style.display = 'block';
+        } else {
+            musicToggleBtn.innerHTML = '⏸️ Pause Music';
+            musicControls.style.display = 'block';
+        }
+    }
+
+    function tryPlayBackgroundMusic() {
+        if (!bgAudio) return;
+        bgAudio.volume = 0.6;
+        bgAudio.play().then(() => {
+            if (musicControls) musicControls.style.display = 'block';
+        }).catch(() => {
+            console.log('Background music autoplay blocked; tap anywhere or press play.');
+            if (musicControls) musicControls.style.display = 'block';
+        });
+    }
+
+    if (bgAudio) {
+        bgAudio.addEventListener('play', updateMusicButton);
+        bgAudio.addEventListener('pause', updateMusicButton);
+        bgAudio.addEventListener('ended', () => {
+            bgAudio.currentTime = 0;
+            bgAudio.play().catch(() => {});
+        });
+    }
+
+    if (musicToggleBtn) {
+        musicToggleBtn.addEventListener('click', () => {
+            if (!bgAudio) return;
+            if (bgAudio.paused) {
+                bgAudio.play().catch(() => {});
+            } else {
+                bgAudio.pause();
+            }
+            updateMusicButton();
+        });
+    }
+
+    window.addEventListener('click', function userStartedAudio() {
+        tryPlayBackgroundMusic();
+        window.removeEventListener('click', userStartedAudio);
+    }, { once: true, passive: true });
+
+    window.addEventListener('keydown', function userStartedAudioKey() {
+        tryPlayBackgroundMusic();
+        window.removeEventListener('keydown', userStartedAudioKey);
+    }, { once: true, passive: true });
+
+    tryPlayBackgroundMusic();
+
+    // Make forgive button on hero page also work
+    document.querySelectorAll('.pill-button').forEach(btn => {
+        if(btn.innerText.includes('Hamari Yaadein')) {
+            btn.addEventListener('click', (e) => { goToPage(1); });
+        }
+    });
+    
+    // Add a tiny hover effect to polaroids
+    console.log("Romantic multi-page website ready! including all images, video autoplay, memes, and apology.");
+</script>
+</body>
+</html>
